@@ -2,13 +2,12 @@ package com.company;
 
 public class Laptop extends Computer {
         //laptop has no case
-    boolean hasTrackPad;
-    boolean hasDvdDrive;
+    String hasTrackPad;
+    String hasDvdDrive;
 
 
-    //worried it might be better to construct with an array -_- idk. this is a lot of arguments
-    public Laptop(String processorBrand, String processorSpeed, String videoOutput, int hardDriveSize,
-                  int RAMSize, int displayMonitorSize, boolean hasTrackPad, boolean hasDvdDrive) {
+    public Laptop(String processorBrand, String processorSpeed, String videoOutput, String hardDriveSize,
+                  String RAMSize, String displayMonitorSize, String hasTrackPad, String hasDvdDrive) {
 
         super(processorBrand, processorSpeed, videoOutput, hardDriveSize, RAMSize, displayMonitorSize);
 

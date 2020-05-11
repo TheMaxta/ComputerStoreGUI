@@ -8,15 +8,15 @@ public class Computer implements Serializable {
     String processorBrand;
     String processorSpeed;
     String videoOutput; //VGA or HDMI
-    int hardDriveSize;   //Standard sizes are 2.5 and 3.5inches
-    int RAMSize;     //how many GB / MB (gigabytes)
-    int displayMonitorSize;
+    String hardDriveSize;   //Standard sizes are 2.5 and 3.5inches
+    String RAMSize;     //how many GB / MB (gigabytes)
+    String displayMonitorSize;
 
     //huge constructor
     public Computer(
             String processorBrand, String processorSpeed, String videoOutput,
-            int hardDriveSize,
-            int RAMSize, int displayMonitorSize
+            String hardDriveSize,
+            String RAMSize, String displayMonitorSize
     ){
         this.processorBrand = processorBrand;
         this.processorSpeed = processorSpeed;

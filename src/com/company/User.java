@@ -22,7 +22,7 @@ public class User implements Serializable {
     //new destkop and new laptop methods
     //this methods handles desktops
     public void newComputer(String processorBrand, String processorSpeed, String videoOutput,
-                            int hardDriveSize, int RAMSize, int displayMonitorSize, int caseSize)
+                            String hardDriveSize, String RAMSize, String displayMonitorSize, String caseSize)
     {
         stock.add(new Desktop(processorBrand, processorSpeed, videoOutput,
                 hardDriveSize, RAMSize, displayMonitorSize, caseSize));
@@ -31,8 +31,8 @@ public class User implements Serializable {
     //LAPTOP CREATION
     //This overloaded method has two extra variables AND no case size variable
     public void newComputer(String processorBrand, String processorSpeed, String videoOutput,
-                            int hardDriveSize, int RAMSize, int displayMonitorSize,
-                            boolean hasTrackPad, boolean hasDvdDrive)
+                            String hardDriveSize, String RAMSize, String displayMonitorSize,
+                            String hasTrackPad, String hasDvdDrive)
     {
         stock.add(new Laptop(processorBrand, processorSpeed, videoOutput,
                 hardDriveSize, RAMSize, displayMonitorSize, hasTrackPad, hasDvdDrive));

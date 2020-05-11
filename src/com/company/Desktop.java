@@ -1,10 +1,10 @@
 package com.company;
 
 public class Desktop extends Computer {
-    int caseSize;   //14inch being small low end 27inch being tall high end
+    String caseSize;   //14inch being small low end 27inch being tall high end
 
-    public Desktop(String processorBrand, String processorSpeed, String videoOutput, int hardDriveSize,
-                   int RAMSize, int displayMonitorSize, int caseSize) {
+    public Desktop(String processorBrand, String processorSpeed, String videoOutput, String hardDriveSize,
+                   String RAMSize, String displayMonitorSize, String caseSize) {
 
         super(processorBrand, processorSpeed, videoOutput, hardDriveSize, RAMSize, displayMonitorSize);
         this.caseSize = caseSize;

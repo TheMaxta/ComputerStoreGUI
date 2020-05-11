@@ -129,15 +129,12 @@ public class ComputerStore {
         return null;
     }
 
-
     public void displayUserOptions() {
         System.out.println("0) Exit Program. ");
         System.out.println("1) Buy a Desktop.");
         System.out.println("2) Buy a Laptop.");
         System.out.println("3) Find a Computer you already own.");
         System.out.println("4) Display Inventory.");
-
-
     }
 
     public void displayManagerOptions() {
@@ -148,10 +145,6 @@ public class ComputerStore {
         System.out.println("8) Delete every single User ever made (including yourself) ");
 
     }
-
-    //public void
-
-
 
 
     public void runClient(User client_user) {
@@ -252,7 +245,6 @@ public class ComputerStore {
                     String name = input2.nextLine();
 
                     client_user.findUser(name);
-
                     verifyContinue();
 
                     break;
@@ -280,11 +272,9 @@ public class ComputerStore {
         }
     }
 
-
     public void loadUserBase(ArrayList<User> users) {
         client = users;
     }
-
 
     public void verifyContinue() {
         /*System.out.println("Press Enter to Continue....");
@@ -302,15 +292,12 @@ public class ComputerStore {
         return client;
     }
 
-
     public class AccountWindow extends JFrame {
-
         private static final int WIDTH = 450;
         private static final int HEIGHT = 400;
 
         private JTextField userNameBox;
         private JTextField userPassBox;
-
 
         public AccountWindow() {
             setTitle("Login Menu");
@@ -318,7 +305,6 @@ public class ComputerStore {
             setDefaultCloseOperation(EXIT_ON_CLOSE);
             createContents();
             setVisible(true);
-
         }
 
         public void createContents() {
@@ -335,9 +321,7 @@ public class ComputerStore {
 
             JButton submitButton = new JButton("Submit");
 
-
             Listener listener;
-
 
             //create first row
             JLabel userNameLabel = new JLabel("User Name: ");
@@ -359,7 +343,6 @@ public class ComputerStore {
             signUpRow = new JPanel(new FlowLayout(FlowLayout.CENTER));
             signUpRow.add(signUpLabel);
             signUpRow.add(signUpButton);
-
 
             //north border region use window panel for border layout
             //title and intro at top
@@ -385,16 +368,13 @@ public class ComputerStore {
             //Main Jframe
             add(windowPanel);
 
-
             //listeners
             listener = new Listener();
             signUpButton.addActionListener(listener);
             submitButton.addActionListener(listener);
-
         }
 
         private class Listener implements ActionListener {
-
 
             public void actionPerformed(ActionEvent e) {
                 if (e.getActionCommand().equals("Sign Up")) {
@@ -421,7 +401,6 @@ public class ComputerStore {
                                 UserWindow userWin = new UserWindow(current_user);
                             }
 
-
                         }
                         else{
                             JOptionPane.showMessageDialog(null, "Invalid Username or Password!", "alert", JOptionPane.ERROR_MESSAGE);
@@ -432,9 +411,7 @@ public class ComputerStore {
                         JOptionPane.showMessageDialog(null, "Invalid Username or Password!", "alert", JOptionPane.ERROR_MESSAGE);
                     }
 
-
                 }
-
 
             }
         } //end of action listener
@@ -443,21 +420,12 @@ public class ComputerStore {
 
 
 
-
-
-
-
-
-
-
     public class SignUpWindow extends JFrame {
         private static final int WIDTH = 450;
         private static final int HEIGHT = 400;
-
         private JTextField userNameBox;
         private JTextField userPassBox;
         private JCheckBox isManagerCheckBox;
-
 
         public SignUpWindow()
         {
@@ -466,7 +434,6 @@ public class ComputerStore {
             setDefaultCloseOperation(EXIT_ON_CLOSE);
             createContents();
             setVisible(true);
-
         }
 
         public void createContents(){
@@ -483,9 +450,7 @@ public class ComputerStore {
 
             JButton submitButton = new JButton("Submit");
 
-
             Listener listener;
-
 
             //create first row
             JLabel userNameLabel = new JLabel("User Name: ");
@@ -509,7 +474,6 @@ public class ComputerStore {
             isManagerRow.add(isManagerLabel);
             isManagerRow.add(isManagerCheckBox);
 
-
             //north border region use window panel for border layout
             //title and intro at top
             JLabel title = new JLabel("Welcome! Please enter account information below. ");
@@ -522,7 +486,6 @@ public class ComputerStore {
             southPanel.add(continueLabel);
             southPanel.add(submitButton);
 
-
             centerPanel.add(nameRow);
             centerPanel.add(passRow);
             centerPanel.add(isManagerRow);
@@ -533,7 +496,6 @@ public class ComputerStore {
 
             //Main Jframe
             add(windowPanel);
-
 
             //listeners
             listener = new Listener();
@@ -555,7 +517,6 @@ public class ComputerStore {
 
 
 
-
                         }
                         else {
                             //create normal user account
@@ -565,13 +526,10 @@ public class ComputerStore {
 
 
                         }
-
                     }
                     else {
                         JOptionPane.showMessageDialog(null, "Please ensure you have entered a Username, and Password", "Oops", JOptionPane.ERROR_MESSAGE);
                     } //one field is empty
-
-
 
 
                 }
@@ -580,11 +538,7 @@ public class ComputerStore {
     }
 
 
-
-
     public class UserWindow extends JFrame {
-
-
         private static final int WIDTH = 450;
         private static final int HEIGHT = 500;
 
@@ -611,8 +565,6 @@ public class ComputerStore {
             windowPanel.setBorder(new EmptyBorder(10,10,10,10));
             JButton nextButton = new JButton("Next");
 
-
-
             JPanel northPanel = new JPanel(new FlowLayout());
             JPanel centerPanel = new JPanel(new GridLayout(4,1));
             JPanel southPanel = new JPanel(new FlowLayout());
@@ -626,14 +578,12 @@ public class ComputerStore {
             exitRow.add(exitButton);
             exitRow.add(exitText);
 
-
             //row2
             JPanel buyDesktopRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
             buyDesktopButton = new JRadioButton();
             JLabel buyDesktopText = new JLabel("Buy a Desktop.");
             buyDesktopRow.add(buyDesktopButton);
             buyDesktopRow.add(buyDesktopText);
-
 
             //row3
             JPanel buyLaptopRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -648,7 +598,6 @@ public class ComputerStore {
             JLabel inventoryText = new JLabel("Display Inventory.");
             inventoryRow.add(inventoryButton);
             inventoryRow.add(inventoryText);
-
 
             radioGroup.add(exitButton);
             radioGroup.add(buyDesktopButton);
@@ -694,7 +643,6 @@ public class ComputerStore {
                     }
                     if (buyLaptopButton.isSelected()){
                         PurchaseWindow purchaseWin = new PurchaseWindow((User) user_account, true);
-
                         //open laptop purchase window
                         //drop down?
 
@@ -704,19 +652,14 @@ public class ComputerStore {
 
                     }
             }
-
         }
     }
 
 
-
-
     public class ManagerWindow extends JFrame {
-
 
         private static final int WIDTH = 450;
         private static final int HEIGHT = 500;
-
         private Manager user_account;
 
         private JRadioButton exitButton;
@@ -744,12 +687,9 @@ public class ComputerStore {
             windowPanel.setBorder(new EmptyBorder(10,10,10,10));
             JButton nextButton = new JButton("Next");
 
-
-
             JPanel northPanel = new JPanel(new FlowLayout());
             JPanel centerPanel = new JPanel(new GridLayout(8,1));
             JPanel southPanel = new JPanel(new FlowLayout());
-
             ButtonGroup radioGroup = new ButtonGroup();
 
             //row1
@@ -759,14 +699,12 @@ public class ComputerStore {
             exitRow.add(exitButton);
             exitRow.add(exitText);
 
-
             //row2
             JPanel buyDesktopRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
             buyDesktopButton = new JRadioButton();
             JLabel buyDesktopText = new JLabel("Buy a Desktop.");
             buyDesktopRow.add(buyDesktopButton);
             buyDesktopRow.add(buyDesktopText);
-
 
             //row3
             JPanel buyLaptopRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -782,8 +720,6 @@ public class ComputerStore {
             inventoryRow.add(inventoryButton);
             inventoryRow.add(inventoryText);
 
-
-
             //row5
             //diplay all users
             JPanel displayUserRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -792,14 +728,12 @@ public class ComputerStore {
             displayUserRow.add(displayUserButton);
             displayUserRow.add(displayUserText);
 
-
             //row6 search a user by name
             JPanel searchUserRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
             searchUserButton = new JRadioButton();
             JLabel searchUserText = new JLabel("Search for A User Account.");
             searchUserRow.add(searchUserButton);
             searchUserRow.add(searchUserText);
-
 
             //row7 delete a user by ID
             JPanel deleteUserRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -865,12 +799,13 @@ public class ComputerStore {
                     System.out.println(user_account.name);
                 }
                 if (buyDesktopButton.isSelected()){
-                    PurchaseWindow purchaseWin = new PurchaseWindow((User) user_account, false);
+                    PurchaseWindow purchaseWin = new PurchaseWindow(((User) user_account), false);
                     //open purchase window
                     //drop down box?
                 }
                 if (buyLaptopButton.isSelected()){
-                    PurchaseWindow purchaseWin = new PurchaseWindow((User) user_account, true);
+                    System.out.println("laptop selected SHOULD BE PASSING A TRUE BOOLEAN RIGHT NOW");
+                    PurchaseWindow purchaseWin = new PurchaseWindow(((User) user_account), true);
 
                     //open laptop purchase window
                     //drop down?
@@ -889,26 +824,21 @@ public class ComputerStore {
                                 "Customized Dialog", JOptionPane.PLAIN_MESSAGE, null, names, names[0]);
                         if ((response != null) && (response.length() > 0)) {
                             User selected_user;
-                            //I want to output the user's inventory.
-
                             selected_user = findUser(response);
                             //display user-specific information in dialogue box
                             JOptionPane.showMessageDialog(null,
                                     "User Name: " + selected_user.name + "\n " + "User ID:  " + selected_user.id + "\n");
-
                             return;
                         }
 
                     } catch (ArrayIndexOutOfBoundsException e1){
                         System.out.println("No users available to display");
                     }
-
                 }
                 if (searchUserButton.isSelected()){
 
                 }
                 if (deleteUserButton.isSelected()){
-
                     //display all users
                     Object[] names = getUsernames();
 
@@ -921,8 +851,6 @@ public class ComputerStore {
                         user_account.findUser(response);
                         //display user-specific information in dialogue box
 
-
-
                         int dialogButton = JOptionPane.YES_NO_OPTION;
                         int dialogResult = JOptionPane.showConfirmDialog(exitButton, "Are You Sure you want to permanently delete this user?\n User Selected: " + selected_user.name + "\n "+ "User ID:  " + selected_user.id + "\n", "Close Program", dialogButton);
                         if(dialogResult == 0) {
@@ -931,21 +859,11 @@ public class ComputerStore {
                             client = user_account.destroyUser(); //will destroy user instance and return new user list without the destroyed user
                             JOptionPane.showMessageDialog(null,
                                     "User account has been permanently destroyed from database");
-
                         } else {
                             System.out.println("No Option");
-
                         }
-
-
-
-
                         return;
                     }
-
-
-
-
 
                 }
                 if (deleteAllUsersButton.isSelected()){
@@ -954,23 +872,16 @@ public class ComputerStore {
                     if(dialogResult == 0) {
                         System.out.println("Yes option");
                         user_account.destroyAllUsers();
-
                     } else {
                         System.out.println("No Option");
                     }
                 }
 
-
             }
-
         }
     }
 
-
-
     public class PurchaseWindow extends JFrame {
-
-
         private static final int WIDTH = 450;
         private static final int HEIGHT = 500;
 
@@ -984,35 +895,24 @@ public class ComputerStore {
         private JRadioButton searchUserButton;
         private JRadioButton deleteUserButton;
         private JRadioButton deleteAllUsersButton;
-
-
-        //all of this needs to be dynamic. There should be an if statement that determines the number of rows at 7 if dekstop and 8 if computer
-        //new and separate comboBoxText array for laptop specific options triggers in event of isLaptop condition
-        private String[] labelText = {"CPU: ", "CPU Speed: ", "Video Out: ","HDD: ", "RAM", "Monitor" };
         private boolean isLaptop;
-        String[][] comboBoxText = {
-                {"Intel", "Dell"},
-                {"2.1 GHz (for babies)","2.5 GHz", "3.1 GHz", "3.5 Ghz (real men)"},
-                {"HDMI","VGA"},
-                {"250GB","500GB","1TB"},
-                {"2GB","4GB","8GB"},
-                {"1080x720", "1920x1080", "$1000 mac laptop stand"}
-        };
+        private int numberOfRows;
+        private String[] labelText;
+        private String[][] comboBoxText;
+
         private ArrayList<JPanel> rows = new ArrayList<JPanel>();
         private ArrayList<JLabel> initialText = new ArrayList<JLabel>();
         private ArrayList<JComboBox> comboBox = new ArrayList<JComboBox>();
 
-        private int numberOfRows = labelText.length;
-
-        public PurchaseWindow(User passed_user, Boolean isLaptop)
+        public PurchaseWindow(User passed_user, boolean isLaptop)
         {
+            this.isLaptop = isLaptop;
             setTitle("User Window");
             setSize(WIDTH, HEIGHT);
             setDefaultCloseOperation(EXIT_ON_CLOSE);
-            createContents();
             setVisible(true);
             user_account = passed_user;
-            this.isLaptop = isLaptop;
+            createContents();
         }
 
         public void createContents()
@@ -1022,29 +922,49 @@ public class ComputerStore {
             JButton nextButton = new JButton("Purchase");
             JButton closeButton = new JButton("Close");
             JButton wishListButton = new JButton("Save to Wishlist");
-
-
-
+            System.out.println(isLaptop);
+            if(isLaptop){
+                labelText = new String[]{"CPU: ", "CPU Speed: ", "Video Out: ", "HDD: ", "RAM: ", "Monitor:", "Track Pad Style: ", "Dvd Drive: "};
+                numberOfRows = labelText.length;
+                comboBoxText = new String[][]{
+                        {"Intel", "Dell"},
+                        {"1.5 GHz (for babies)","2.1 GHz", "2.5 GHz", "3.1 GHz", "3.5 Ghz (real men)"},
+                        {"HDMI", "VGA"},
+                        {"150GB", "250GB", "500GB"},
+                        {"1GB", "2GB", "4GB"},
+                        {"1080x720", "1920x1080", "$1000 mac laptop stand"},
+                        {"Large Track Pad","Small Track Pad","Track Point","Stylus"},
+                        {"No Dvd Drive","Dvd Drive Included"}
+                };
+            }
+            else {
+                labelText = new String[]{"CPU: ", "CPU Speed: ", "Video Out: ", "HDD: ", "RAM", "Monitor"};
+                numberOfRows = labelText.length;
+                comboBoxText = new String[][]{
+                        {"Intel", "Dell"},
+                        {"2.1 GHz (for babies)", "2.5 GHz", "3.1 GHz", "3.5 Ghz (real men)"},
+                        {"HDMI", "VGA"},
+                        {"250GB", "500GB", "1TB"},
+                        {"2GB", "4GB", "8GB"},
+                        {"1080x720", "1920x1080", "$1000 mac stand"}
+                };
+            }
 
             JPanel northPanel = new JPanel(new FlowLayout());
             JPanel centerPanel = new JPanel(new GridLayout(0,1));//0 rows specified for dynamic output
             JPanel southPanel = new JPanel(new FlowLayout());
 
 
-
-
             for (int i = 0; i < numberOfRows; i++) {
                 rows.add(new JPanel());
                 initialText.add(new JLabel(labelText[i]));
                 comboBox.add(new JComboBox(comboBoxText[i]));
-
             }
 
             int count = 0;
             for (JPanel i: rows) {
                 i.add(initialText.get(count));
                 i.add(comboBox.get(count));
-
                 count++;
             }
 
@@ -1054,10 +974,8 @@ public class ComputerStore {
             }
 
 
-            //radioGroup.add(exitButton);
-
-            if (isLaptop){northPanel.add(new JLabel("Purchase A Desktop!"));}
-            else {northPanel.add(new JLabel("Purchase A Laptop!"));}
+            if (isLaptop){northPanel.add(new JLabel("Purchase A Laptop!"));}
+            else {northPanel.add(new JLabel("Purchase A Desktop!"));}
 
             southPanel.add(nextButton);
             //southPanel.add(exitButton);
@@ -1077,29 +995,7 @@ public class ComputerStore {
             public void actionPerformed(ActionEvent e) {
 
 
-                /*
-                public void newComputer(String processorBrand, String processorSpeed, String videoOutput,
-                int hardDriveSize, int RAMSize, int displayMonitorSize, int caseSize)
-                {
-                    stock.add(new Desktop(processorBrand, processorSpeed, videoOutput,
-                            hardDriveSize, RAMSize, displayMonitorSize, caseSize));
-                }
-
-                //LAPTOP CREATION
-                //This overloaded method has two extra variables AND no case size variable
-                public void newComputer(String processorBrand, String processorSpeed, String videoOutput,
-                int hardDriveSize, int RAMSize, int displayMonitorSize,
-                boolean hasTrackPad, boolean hasDvdDrive)
-                {
-                    stock.add(new Laptop(processorBrand, processorSpeed, videoOutput,
-                            hardDriveSize, RAMSize, displayMonitorSize, hasTrackPad, hasDvdDrive));
-                }
-                    */
-
-                for (JComboBox j : comboBox){
-
-                }
-                String[] selectedVals = new String[numberOfRows];
+                String[] selectedVals = new String[numberOfRows+1];
 
                 int count = 0;
                 for (JComboBox j : comboBox) {
@@ -1108,23 +1004,14 @@ public class ComputerStore {
                 }
                 if(isLaptop){
                     user_account.newComputer(selectedVals[0],selectedVals[1],selectedVals[2],selectedVals[3],selectedVals[4],selectedVals[5],selectedVals[6],selectedVals[7]);
-
                 }
                 else{
                     //isDesktop
                     user_account.newComputer(selectedVals[0],selectedVals[1],selectedVals[2],selectedVals[3],selectedVals[4],selectedVals[5],selectedVals[6]);
                 }
-                //this is bad and i know it
-                if(isLaptop) {
-                //    user_account.newComputer();
-                }
-                else {
-                //    user_account.newComputer();
-                }
 
-            }
-
-        }
+            } //end action perf
+        }//end action listener
     }
 
 

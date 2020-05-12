@@ -11,13 +11,12 @@ public class Manager extends User {
         super(name, password);
 
         Random rnd = new Random();
-        this.id = 100000 + rnd.nextInt(900000);  //There needs to be a check for pre-existing id's
+        this.id = 100000 + rnd.nextInt(900000);
     }
 
     public void getUsers(ArrayList<User> user_list){
         this.user_list = user_list;
     }
-    //somehow the manager class needs access to it's parent objects users arraylist
 
     public void findUser(String name){
         for (User i : user_list) {
@@ -50,7 +49,17 @@ public class Manager extends User {
     public ArrayList<User> destroyUser(){
         int index;
         index = user_list.indexOf(user_instance);
+        System.out.println("Index is: "+index);
         user_list.remove(index);
+        return user_list;
+    }
+
+    public ArrayList<User> removeThisUser(String name){
+        for (User u: user_list) {
+            if(u.name.equals(name)){
+                user_list.remove(u);
+            }
+        }
         return user_list;
     }
 

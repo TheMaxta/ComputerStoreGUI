@@ -1,4 +1,5 @@
 package com.company;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,7 +7,7 @@ import java.util.Scanner;
 public class ComputerStoreDriver {
     public static void main(String[] args) {
         boolean flag;
-        int ans = 999;
+        String ans = "";
         Scanner input = new Scanner(System.in);
         ComputerStore testStore = new ComputerStore();
         WriteToFile writer = new WriteToFile();
@@ -15,7 +16,7 @@ public class ComputerStoreDriver {
         ArrayList<User> user_array;
 
 
-        while (ans != 0) {
+        while (!ans.equals("0")) {
 
             //Methods for reading data from file
             reader.readArray();     //reads input into a java array
@@ -23,34 +24,15 @@ public class ComputerStoreDriver {
 
             testStore.loadUserBase(user_array); //pass user_array as argument
 
-            System.out.println("1) Sign Up     ----   (Create New Account)");
-            System.out.println("2) Login       ----   (Existing User)");
-            System.out.println("-------------------------------------");
-            System.out.println("0) Exit Program ");
+            System.out.println("Type 0 to save and exit program.");
+            System.out.println("Type any char to start GUI.");
 
-            ans = input.nextInt();
-            if (ans == 1) {
-                //create new user
+            ans = input.next();
 
-                System.out.printf("Are you a manager? (Yes = true / No = false)");
-                flag = input.nextBoolean();
-                if (flag) {
-                    testStore.addManager();
-                } else {
-                    testStore.addUser();
-                }
-
-            } else if (ans == 2) {
-                //login existing user
-
-
-                testStore.login();
-
-
-            } else if (ans == 0) {
+            if (ans.equals("0")){
                 System.out.println("Goodbye!");
             } else {
-                System.out.println("Unrecognized input.");
+                testStore.login();
             }
 
 

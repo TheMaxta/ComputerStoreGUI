@@ -1,17 +1,15 @@
 package com.company;
 import javafx.scene.layout.Border;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-
 
 public class ComputerStore {
     Scanner input = new Scanner(System.in);
@@ -44,48 +42,8 @@ public class ComputerStore {
         return names;
     }
 
-
     public void login() {
         AccountWindow login = new AccountWindow();
-        /*
-       // UserWindow running_client = new UserWindow();
-        Scanner input = new Scanner(System.in);//in case of overflow
-        System.out.println("Enter name: ");
-        String name = input.nextLine();
-        if (validateName(name)) {
-            System.out.println("Enter pass: ");
-            String pass = input.nextLine();
-            if (validatePass(pass)) {
-
-                User current_user = getUser(name);
-                // Manager manager_user = (Manager) getUser(name); //crashes because cannot cast user to manager
-
-                //This runs when the account name is matched with a Manager account
-                if (current_user instanceof Manager) {
-                    Manager manager_user = (Manager) getUser(name);
-                    runClient(manager_user);
-                }  // (runClient) is overloaded method for users and/or managers
-                //managers are able to do a lot more than users, naturally
-                //This runs when the account name is matched with a User account
-                else if (current_user instanceof User) {
-                    runClient(current_user);
-                }
-                //I just need the compiler to differentiate between a user without a manager child branch
-                System.out.println("Logging out " + current_user.name + " .....");
-
-                //else runs when password does not match the name entered earlier
-            } else {
-                System.out.println("Username and Password do not match! Try again.");
-                login(); //run method again until a match is made
-            }
-
-            //else runs when name does not match a name currently in database
-        } else {
-            System.out.println("Username and Password do not match! Try again.");
-            login();
-        }
-
-         */
     }
 
     public boolean validateName(String name) {
@@ -131,7 +89,6 @@ public class ComputerStore {
         }
         return null;
     }
-    
 
     public void loadUserBase(ArrayList<User> users) {
         client = users;
@@ -154,8 +111,8 @@ public class ComputerStore {
     }
 
     public class AccountWindow extends JFrame {
-        private static final int WIDTH = 450;
         private static final int HEIGHT = 400;
+        private static final int WIDTH = 650;
 
         private JTextField userNameBox;
         private JTextField userPassBox;
@@ -173,16 +130,30 @@ public class ComputerStore {
             windowPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
             JPanel northPanel = new JPanel(new FlowLayout());
-            JPanel centerPanel = new JPanel(new GridLayout(4, 1));
+            JPanel centerPanel = new JPanel(new GridLayout(4, 1,10,10));
             JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
             JPanel nameRow; //row1
             JPanel passRow; //row2
             JPanel signUpRow; //row3
 
-            JButton submitButton = new JButton("Submit");
 
+            JButton submitButton = new JButton("Submit");
             Listener listener;
+
+
+            try {
+                final Image backgroundImage = javax.imageio.ImageIO.read(new File("login.jpg"));
+                setContentPane(new JPanel(new BorderLayout()) {
+                    @Override public void paintComponent(Graphics g) {
+                        g.drawImage(backgroundImage, 0, 0, null);
+                    }
+                });
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
 
             //create first row
             JLabel userNameLabel = new JLabel("User Name: ");
@@ -209,10 +180,19 @@ public class ComputerStore {
             //title and intro at top
             JLabel title = new JLabel("Welcome! Please enter account information below. ");
             northPanel.add(title);
-
             //south border region use window panel for border layout
             //submit button bottom right
             JLabel continueLabel = new JLabel("Click here to continue.");
+
+            nameRow.setBackground(new Color(138, 138, 135, 91));
+            passRow.setBackground(new Color(138, 138, 135, 91));
+            signUpRow.setBackground(new Color(138, 138, 135, 91));
+
+            northPanel.setBackground(new Color(241, 241, 236, 144));
+            windowPanel.setOpaque(false);
+            centerPanel.setOpaque(false);
+            southPanel.setOpaque(false);
+            //northPanel.setOpaque(false);
             southPanel.add(continueLabel);
             southPanel.add(submitButton);
 
@@ -228,6 +208,8 @@ public class ComputerStore {
 
             //Main Jframe
             add(windowPanel);
+
+
 
             //listeners
             listener = new Listener();
@@ -249,7 +231,6 @@ public class ComputerStore {
                     if (validateName(userNameBox.getText())){
                         if (validatePass(userPassBox.getText())){
                             User current_user = getUser(userNameBox.getText());
-                            System.out.println(current_user);
                             setVisible(false);
                             //program needs to store instance of current_user object in this scope
                             String testVar = current_user.name;
@@ -340,7 +321,6 @@ public class ComputerStore {
             JLabel title = new JLabel("Welcome! Please enter account information below. ");
             northPanel.add(title);
 
-
             //south border region use window panel for border layout
             //submit button bottom right
             JLabel continueLabel = new JLabel("Click here to continue.");
@@ -362,7 +342,6 @@ public class ComputerStore {
             listener = new Listener();
             isManagerCheckBox.addActionListener(listener);
             submitButton.addActionListener(listener);
-
         }
 
         private class Listener implements ActionListener{
@@ -378,7 +357,6 @@ public class ComputerStore {
                             AccountWindow instance = new AccountWindow();
                             setVisible(false);
 
-
                         }
                         else {
                             //create normal user account
@@ -391,8 +369,6 @@ public class ComputerStore {
                     else {
                         JOptionPane.showMessageDialog(null, "Please ensure you have entered a Username, and Password", "Oops", JOptionPane.ERROR_MESSAGE);
                     } //one field is empty
-
-
                 }
             }
         }
@@ -400,7 +376,7 @@ public class ComputerStore {
 
 
     public class UserWindow extends JFrame {
-        private static final int WIDTH = 450;
+        private static final int WIDTH = 650;
         private static final int HEIGHT = 500;
         private User user_account;
         private JRadioButton exitButton;
@@ -424,10 +400,26 @@ public class ComputerStore {
             JButton previousButton = new JButton("Go Back");
 
             JPanel northPanel = new JPanel(new FlowLayout());
-            JPanel centerPanel = new JPanel(new GridLayout(4, 1));
+            JPanel centerPanel = new JPanel(new GridLayout(4, 1,20,20));
             JPanel southPanel = new JPanel(new FlowLayout());
 
             ButtonGroup radioGroup = new ButtonGroup();
+
+
+
+            try {
+                final Image backgroundImage = javax.imageio.ImageIO.read(new File("chip.jpg"));
+                setContentPane(new JPanel(new BorderLayout()) {
+                    @Override public void paintComponent(Graphics g) {
+                        g.drawImage(backgroundImage, 0, 0, null);
+                    }
+                });
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+
 
             //row1
             JPanel exitRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -464,6 +456,16 @@ public class ComputerStore {
 
             northPanel.add(new JLabel("Welcome!"));
 
+
+            northPanel.setBackground(new Color(241, 241, 236, 144));
+            windowPanel.setOpaque(false);
+            centerPanel.setOpaque(false);
+            southPanel.setOpaque(false);
+            exitRow.setBackground(new Color(241, 241, 236, 144));
+            buyDesktopRow.setBackground(new Color(241, 241, 236, 144));
+            buyLaptopRow.setBackground(new Color(241, 241, 236, 144));
+            inventoryRow.setBackground(new Color(241, 241, 236, 144));
+
             centerPanel.add(exitRow);
             centerPanel.add(buyDesktopRow);
             centerPanel.add(buyLaptopRow);
@@ -492,11 +494,11 @@ public class ComputerStore {
                         int dialogButton = JOptionPane.YES_NO_OPTION;
                         int dialogResult = JOptionPane.showConfirmDialog(exitButton, "Are You Sure?", "Close Program", dialogButton);
                         if (dialogResult == 0) {
+                            setVisible(false);
                             System.out.println("Yes option");
                         } else {
                             System.out.println("No Option");
                         }
-                        System.out.println(user_account.name);
                     }
                     if (buyDesktopButton.isSelected()) {
                         PurchaseWindow purchaseWin = new PurchaseWindow((User) user_account, false);
@@ -534,7 +536,7 @@ public class ComputerStore {
 
     public class ManagerWindow extends JFrame {
 
-        private static final int WIDTH = 450;
+        private static final int WIDTH = 650;
         private static final int HEIGHT = 500;
         private Manager user_account;
 
@@ -565,9 +567,24 @@ public class ComputerStore {
 
 
             JPanel northPanel = new JPanel(new FlowLayout());
-            JPanel centerPanel = new JPanel(new GridLayout(8,1));
+            JPanel centerPanel = new JPanel(new GridLayout(8,1,10,10));
             JPanel southPanel = new JPanel(new FlowLayout());
             ButtonGroup radioGroup = new ButtonGroup();
+
+
+            try {
+                final Image backgroundImage = javax.imageio.ImageIO.read(new File("chip.jpg"));
+                setContentPane(new JPanel(new BorderLayout()) {
+                    @Override public void paintComponent(Graphics g) {
+                        g.drawImage(backgroundImage, 0, 0, null);
+                    }
+                });
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+
 
             //row1
             JPanel exitRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -634,6 +651,23 @@ public class ComputerStore {
 
             northPanel.add(new JLabel("Welcome!"));
 
+
+
+            exitRow.setBackground(new Color(241, 241, 236, 144));
+            buyDesktopRow.setBackground(new Color(241, 241, 236, 144));
+            buyLaptopRow.setBackground(new Color(241, 241, 236, 144));
+            inventoryRow.setBackground(new Color(241, 241, 236, 144));
+            inventoryRow.setBackground(new Color(241, 241, 236, 144));
+            displayUserRow.setBackground(new Color(241, 241, 236, 144));
+            deleteUserRow.setBackground(new Color(241, 241, 236, 144));
+            deleteAllUsersRow.setBackground(new Color(241, 241, 236, 144));
+
+            northPanel.setBackground(new Color(241, 241, 236, 144));
+            windowPanel.setOpaque(false);
+            centerPanel.setOpaque(false);
+            southPanel.setOpaque(false);
+
+
             centerPanel.add(exitRow);
             centerPanel.add(buyDesktopRow);
             centerPanel.add(buyLaptopRow);
@@ -664,6 +698,7 @@ public class ComputerStore {
                         int dialogResult = JOptionPane.showConfirmDialog(exitButton, "Are You Sure?", "Close Program", dialogButton);
                         if(dialogResult == 0) {
                             System.out.println("Yes option");
+                            setVisible(false);
                         } else {
                             System.out.println("No Option");
                         }
@@ -760,7 +795,6 @@ public class ComputerStore {
                     user_account = null;
                     AccountWindow instanceWin = new AccountWindow();
                 }
-
             }
         }
     }
@@ -889,7 +923,4 @@ public class ComputerStore {
             } //end action perf
         }//end action listener
     }
-
-
-
 } //end of computerstore
